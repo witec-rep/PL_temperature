@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "witecapi-1585041362403",
+  "private_key_id": "7b9f6daad4a887cda131860e75cf67c02a33a430",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDRWAgKvpwVwi/W\nFX6b5l/D0KyFdgWNq1P+8HsYNPlzwhi/UaWBuD512AhiiatU4PWXUi1itEO/dEAY\n7Z3sT8fWYwUYQmTOQVx7xUu5LHzYCAbhZ/Rybp4ezZ2s14Pr2BtewhWBwmGRTe5f\nXyyY0bw9r79L/dr5Fzuv1FOzK48TxCK78Fly448OfP83/Ojeys6kGwpH94eWMBSH\n8Bl0zLBqVK6zjCm/u77oD3+3Hrvz8DP/j1HRn/a2NpZueLH1iFMNeDBKfEBVcK5L\nN3iLeo+CAePJP60YErRxWCyQcGxOJe6aeglO5n/EaWlcTEe+/LkHENXfpSFrJP+Q\nNP36b5AjAgMBAAECggEAURAfERYNN8m5n1M0cycKhzdLTuTMMrcYr/wsFkwRGleb\nIJ57kdcn7JcKbCm2HAh+YSmzpGh8YWshFOYSRHsCPYybYPD4uvuJVe4oq9xDvZ2i\nGG+aMyONfA0P1OmhTlahBpjuHhCImm0MdIbUrJpuo45l64Wx4Mmz1ZrJDHS+Ex8o\n5ACSI17baQPe6C8myqHFLT+tdauObEEzlb84hVrkk74/5FO8xlNs7D87BwzYpwOb\nWaVm4KfowhiPsGc0f9eeEVvULNXkoFZUauL4DrDnZC7LYFMMvRJWMfAqvmW5ofVX\n/cBvBVpLCkaQ3KuE/mpTPEPbsLVyDwx0gP0qm9gZNQKBgQD1Q2aS1HDLZ+jWZlNo\nvWruMm+TveBHljewBA870Q0Lp8fcEJHdc9SNjkLJgclz+aBKghWcP2axKh469+0J\ncuswDLESZtzkmJQYufjAhdLFQuk+pvPTN2Skob13/K6jGJRQaeJrgDAgfhLQxAwd\nVNpQjiQe8cBJa+nmzdf2YhiVtwKBgQDaghdzaAKcl650Kc12nBsJCqvIo7aehK1t\nfRisU0UejqQCCbBrfz4Hr9snj4sfQVeHljFXDJBszaq3bDTs5i2RZIku4VOtCsY2\nVmecG53ffYB2NwmMmEEz9RYi58rs07VhFnncLoWf4ritWlBCSF4kCBfTH6ex0LDz\nVFhxnxn49QKBgQCc7L8YeyygOJ/Vbis3/NoKBeM2GGsD4q1GxZIpp5w9NOC/gSqT\nEqWQ3NEGtS/8MF/KzGifTEGcYWJuQGs9fHXWjIhPSdlTufwnxfXO2ND+vc0W9SNU\npUCTxZjAyL/EQtnCib0BI0enwoKvaICH097LY+bglbV+RLmnn1Tqo+EvCQKBgQDU\nqCN2l9Vi3WRVfZGPS+Ir7Iy/GkXTBMFce5EVtXzhfmUz7oYaOJ4AETAy0krNwmQT\neyLN21Z77bWmCdOAc4wJolS4oWc0U/YQUAtKLL57EcOCSZIrmMpsbKx8kCY4UtqF\ngMBcf5JgxuCBJhJST+f/HTlCqd4k+jwctQvWmMdIOQKBgQC7d5eXh39Iw4F5siqu\nWG7ryKulOXZ/zQtYvEND0fYBfdyZpBhHM8qlGwguWgM9ZtuqWJhc9Qterz1ebbDQ\nYvLCuTVTZnsVjc6SIoSp8kwiJlnjNC7IZO5yXt5Xa2Y2O3tfLROBEPDOqQm2JF0Q\nNOxfkdSXXrDXXUFxwxU1Chh9tw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "witec-134@witecapi-1585041362403.iam.gserviceaccount.com",
+  "client_id": "110218568112646991844",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/witec-134%40witecapi-1585041362403.iam.gserviceaccount.com"
+}
