@@ -327,8 +327,14 @@ class mapping:
                 save_plot[i] = PL_ratio_raman[1][:,i]
             download_file(save_plot, self.nome_file + '_ratio')
 
-        T_dense, ET_dense = sa(PL_ratio_raman[0], PL_ratio_raman[1], salva, len(y_smooth[0]), temp_max = temp_max).ratio_vs_power(average_intensity_new, S_min = S_min, S_max = S_max, AS_min = AS_min, AS_max = AS_max,
-                                                                                                                                  T_RT = T_RT, laser_type = laser_type, selected_scan = selected_scan)
+
+        if self.log_scale == 3:
+            T_direct_standard, ET_direct_standard = sa(PL_ratio_raman[0], PL_ratio_raman[1], salva, len(y_smooth[0]), temp_max = temp_max).direct_standard(average_intensity_new, S_min = S_min, S_max = S_max, AS_min = AS_min, AS_max = AS_max,
+                                                                                                                                      T_RT = T_RT, laser_type = laser_type, selected_scan = selected_scan)
+        else:
+            T_dense, ET_dense = sa(PL_ratio_raman[0], PL_ratio_raman[1], salva, len(y_smooth[0]), temp_max = temp_max).ratio_vs_power(average_intensity_new, S_min = S_min, S_max = S_max, AS_min = AS_min, AS_max = AS_max,
+                                                                                                                                      T_RT = T_RT, laser_type = laser_type, selected_scan = selected_scan)
+
         if salva == 'yes':
             st.text('Logaritmic scale')
         controllo_negativi = 0
@@ -352,6 +358,11 @@ class mapping:
             T_raman = T_dense.tolist()
             R2_raman = [1 for i in range(len(T_dense))]
             ET_raman = ET_dense.tolist()
+        elif self.log_scale == 3:
+            T_raman = T_direct_standard.tolist()
+            R2_raman = [1 for i in range(len(T_direct_standard))]
+            ET_raman = ET_direct_standard.tolist()
+
 
         # ███████ ██ ████████
         # ██      ██    ██

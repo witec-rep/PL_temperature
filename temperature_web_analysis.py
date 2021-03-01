@@ -183,13 +183,13 @@ elif scelta == 'new':
 wave_sup, num_bin, raggio, laser_power, AS_min, AS_max, S_min, S_max, riga_y_start, riga_y_stop, pixel_0_x, pixel_0_y,
 laser_type, lato_cella, temp_max, cut_min, cut_max, punti_cross_section_geometrica, num_loop1, num_loop2, soglia_r2, selected_scan, T_RT, material) = vet_param
 
-empty_save = st.sidebar.empty()
-if st.sidebar.button('Delete'):
-    if PL_mane in exp_names:
-        delete_database(df, PL_mane)
-        st.warning("succesfully deleted the parameters for "+PL_mane)
-    else:
-        st.error(PL_mane + " is not in the database therefore cannot be deleted")
+# empty_save = st.sidebar.empty()
+# if st.sidebar.button('Delete'):
+#     if PL_mane in exp_names:
+#         delete_database(df, PL_mane)
+#         st.warning("succesfully deleted the parameters for "+PL_mane)
+#     else:
+#         st.error(PL_mane + " is not in the database therefore cannot be deleted")
 
 type_of_analysis = ['home', 'single', 'learning on single', 'loop numerators', 'T averaging', 'Derivative threshold estimator', 'set all parameters', 'Compare multi particles', 'Compare log vs standard', 'Global analysis']
 side_selection = st.sidebar.radio('Select the type of analysis', type_of_analysis)
@@ -250,18 +250,18 @@ if side_selection != type_of_analysis[7] and side_selection != type_of_analysis[
         T_RT = float(st.sidebar.text_input('T reference (K)', vet_param[31]))
 
 
-if empty_save.button('Saving'):
-    vet_param = [PL_mane, numb_of_spect, num_of_scan, bkg_position, x_bkg, y_bkg, remove_cosmic_ray, soglia_derivata,
-                 wave_inf, wave_sup, num_bin, raggio, laser_power, AS_min, AS_max, S_min, S_max, riga_y_start, riga_y_stop,
-                 pixel_0_x, pixel_0_y, laser_type, lato_cella,
-                 temp_max, cut_min, cut_max, punti_cross_section_geometrica, num_loop1, num_loop2, soglia_r2, selected_scan, T_RT, material]
-    if PL_mane in exp_names:
-        save_database(df[PL_mane]['index'] - 1, vet_param)
-        st.success("succesfully uploaded the parameters on "+PL_mane)
-    else:
-        save_database(df.loc['index'][-1], vet_param)
-        st.success("succesfully saved the parameters on "+PL_mane)
-        save_database(df.loc['index'][-1], vet_param)
+# if empty_save.button('Saving'):
+#     vet_param = [PL_mane, numb_of_spect, num_of_scan, bkg_position, x_bkg, y_bkg, remove_cosmic_ray, soglia_derivata,
+#                  wave_inf, wave_sup, num_bin, raggio, laser_power, AS_min, AS_max, S_min, S_max, riga_y_start, riga_y_stop,
+#                  pixel_0_x, pixel_0_y, laser_type, lato_cella,
+#                  temp_max, cut_min, cut_max, punti_cross_section_geometrica, num_loop1, num_loop2, soglia_r2, selected_scan, T_RT, material]
+#     if PL_mane in exp_names:
+#         save_database(df[PL_mane]['index'] - 1, vet_param)
+#         st.success("succesfully uploaded the parameters on "+PL_mane)
+#     else:
+#         save_database(df.loc['index'][-1], vet_param)
+#         st.success("succesfully saved the parameters on "+PL_mane)
+#         save_database(df.loc['index'][-1], vet_param)
 
 
         # ███████ ████████  █████  ██████  ████████      █████  ███    ██  █████  ██      ██ ███████ ██    ██ ███████
@@ -278,7 +278,7 @@ if file_PL:
     if side_selection != type_of_analysis[4] and side_selection != type_of_analysis[0] and side_selection != type_of_analysis[7] and side_selection != type_of_analysis[6] and side_selection != type_of_analysis[8]:
 
         if side_selection != type_of_analysis[5] and side_selection != type_of_analysis[9]:
-            scelta2 = st.radio('type of parameters',('standard scale', 'log scale', 'direct log'))
+            scelta2 = st.radio('type of parameters',('standard scale', 'standard direct', 'log scale', 'direct log'))
             log_name = ''
             if scelta2 == 'log scale':
                 st.latex(r'''\ln{\left(\frac{I_1}{I_2}\right)} = \frac{1}{\lambda}\left[\frac{\hbar c}{k_b} \left(\frac{1}{T_2} - \frac{1}{T_1} \right)\right] + \frac{\hbar c}{k_b \lambda_{laser}}\left(\frac{1}{T_1} - \frac{1}{T_2} \right) +  \ln{\left(\frac{P_1}{P_2}\right)}''')
@@ -292,6 +292,10 @@ if file_PL:
                 st.latex(r'''T_1 = \frac{\frac{\hbar c}{k_b} \left( \frac{1}{\lambda_{laser}} - \frac{1}{\lambda} \right)}{ \ln{\frac{I_1}{I_2}} - \ln{\frac{P1}{P2}} + \frac{\hbar c}{k_b T_2} \left( \frac{1}{\lambda_{laser}} - \frac{1}{\lambda} \right)}''')
                 log_scale = 2
                 log_name = '_direct'
+            elif scelta2 == 'standard direct':
+                st.latex(r'''T_1 = \frac{\frac{\hbar c}{k_b} \left( \frac{1}{\lambda} - \frac{1}{\lambda_{laser}} \right)}{\ln{\left( \frac{P_1}{P_2} \frac{I_2}{I_1} \left( e^{ \frac{\hbar c}{k_b T_2} \left( \frac{1}{\lambda} - \frac{1}{\lambda_{laser}} \right)} - 1 \right) + 1 \right)}}''')
+                log_scale = 3
+                log_name = '_standard_direct'
         else:
             log_scale = 0
 
@@ -418,13 +422,13 @@ if file_PL:
                 empty_plot = st.empty()
                 empty_text = st.empty()
 
-                log_name_vet = ['_standard', '_log', '_direct']
-                log_scale_vet = [0, 1, 2]
+                log_name_vet = ['_standard', '_standard_direct', '_log', '_direct']
+                log_scale_vet = [0, 3, 1, 2]
 
                 my_bar0 = empty_type_bar.progress(0)
                 dict_save_matr = dict()
                 dict_save_matr2 = dict()
-                for i in range(3):
+                for i in range(len(log_scale_vet)):
 
                     perc_progr = round(i*(100/3))
                     my_bar0.progress(perc_progr)

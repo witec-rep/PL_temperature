@@ -524,6 +524,51 @@ class spectral_anaisi:
         return medie_temperature, sigma_temperature
 
 
+    def direct_standard(self, power, AS_min = 588, AS_max = 616, S_min = 645, S_max = 699, T_RT = 295, laser_type = 633, selected_scan = 0):
+        def funzione_direct(ratio, P1, P_ref, wave):
+            h_bar = 4.1356*1e-15
+            kb = 8.617*1e-5
+            c = 299792458
+            l_laser = laser_type*1e-9
+            wave = wave*1e-9
+
+            numeratore   = (h_bar*c/kb)*((1/wave)-(1/l_laser))
+            denominatore = np.log((P1/P_ref)*(1/ratio)*np.exp(((h_bar*c)/(kb*T_RT))*(1/(wave) - (1/l_laser))))
+            return numeratore/denominatore
+
+        data_cut_x, data_cut_y = self.cut_data_optimal_range(AS_min, AS_max, S_min, S_max)
+        media_x, media = self.average_over_wavelength(data_cut_x, data_cut_y, AS_min, AS_max, S_min, S_max)
+
+        if self.salva == 'yes':
+            ds().nuova_fig(indice_fig=7)
+            ds().titoli(xtag='nm', ytag='ratio', titolo='')
+            for i in range(self.number_of_scan):
+                for j in range(len(media[:,0])):
+                    ds().dati(media_x[j], media[j,i], colore= palette[j], scat_plot ='scat', larghezza_riga =15)
+            st.pyplot()
+
+        range_of_wavelength = pd.DataFrame()
+        for i, wave in enumerate(media_x):
+            vet_temp = []
+            for j, potenza in enumerate(power):
+                vet_temp.append(funzione_direct(media[i, j], potenza, power[self.number_of_scan-1-selected_scan], wave))
+            range_of_wavelength[wave] = vet_temp
+        range_of_wavelength.index = power
+
+        medie_temperature = range_of_wavelength.mean(axis = 1)
+        sigma_temperature = range_of_wavelength.std(axis = 1)
+
+        if self.salva == 'yes':
+            st.write('Temperature density of states')
+            ds().nuova_fig(20)
+            ds().titoli(xtag='P [uW]', ytag='T [k]', titolo='')
+            for j, col in enumerate(range_of_wavelength.columns):
+                ds().dati(range_of_wavelength.index.tolist(), range_of_wavelength[col], colore = palette[j], scat_plot = 'scat', larghezza_riga = 15, descrizione=str(round(col)))
+            ds().legenda()
+            st.pyplot()
+
+        return medie_temperature, sigma_temperature
+
 
 
         # ██ ███    ██ ████████ ███████ ███    ██ ███████ ██ ████████ ██    ██     ███    ███  █████  ██████
