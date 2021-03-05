@@ -533,7 +533,7 @@ class spectral_anaisi:
             wave = wave*1e-9
 
             numeratore   = (h_bar*c/kb)*((1/wave)-(1/l_laser))
-            denominatore = np.log((P1/P_ref)*(1/ratio)*np.exp(((h_bar*c)/(kb*T_RT))*(1/(wave) - (1/l_laser))))
+            denominatore = np.log((P1/P_ref)*(1/ratio)*(np.exp(((h_bar*c)/(kb*T_RT))*(1/(wave) - (1/l_laser)))-1)+1)
             return numeratore/denominatore
 
         data_cut_x, data_cut_y = self.cut_data_optimal_range(AS_min, AS_max, S_min, S_max)
